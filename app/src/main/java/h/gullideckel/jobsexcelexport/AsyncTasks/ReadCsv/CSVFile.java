@@ -108,7 +108,7 @@ public class CSVFile
 
         rowList.add(cellValues.toArray(new String[cellValues.size() - 1]));
 
-        if (row2.length > 0 && row2[row2.length - 1].charAt(0) == '\"')
+        if (row2.length > 1 && row2[1].length() > 0 && row2[1].charAt(0) == '\"')
         {
             BindCells(row2, reader, rowList);
         }
@@ -117,7 +117,12 @@ public class CSVFile
             if(row2.length > 1)
             {
                 for(int i = 1; i < row2.length; i++)
-                    rowList.add(new String[] { row2[i] });
+                {
+                    if(row2[i].length()>0 && row2[i].charAt(0) == '\"')
+                        BindCells(row2, reader, rowList);
+                    else
+                        rowList.add(new String[] { row2[i] });
+                }
             }
         }
     }

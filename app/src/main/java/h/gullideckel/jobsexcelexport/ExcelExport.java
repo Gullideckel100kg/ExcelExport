@@ -29,6 +29,7 @@ import h.gullideckel.jobsexcelexport.AsyncTasks.DocumentErroring.TaskCompareCsvD
 import h.gullideckel.jobsexcelexport.AsyncTasks.ReadCsv.TaskReadCsv;
 import h.gullideckel.jobsexcelexport.Interfaces.ICompanyDocuments;
 import h.gullideckel.jobsexcelexport.Interfaces.ICsvData;
+import h.gullideckel.jobsexcelexport.Menu.FragMenu;
 import h.gullideckel.jobsexcelexport.Objects.CompanyDocument;
 import h.gullideckel.jobsexcelexport.Objects.DocsDbCsv;
 import h.gullideckel.jobsexcelexport.Statics.StaticMessages;
@@ -60,6 +61,7 @@ public class ExcelExport extends FragmentActivity implements ICompanyDocuments, 
     private TaskReadCsv taskReadCsv;
     private TaskCompareCsvDb taskCompare;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -70,7 +72,7 @@ public class ExcelExport extends FragmentActivity implements ICompanyDocuments, 
 
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
-        LoginInStandartUser("c.gullideckel@gmail.com","12345678");
+        LoginInStandartUser("c.gullideckel@gmail.com","1234567");
 
         SharedPreferences sharedPref = getSharedPreferences(getString(R.string.shared_pref_key), Context.MODE_PRIVATE);
         filePath = sharedPref.getString(getString(R.string.saved_directory_key), "");
@@ -82,7 +84,7 @@ public class ExcelExport extends FragmentActivity implements ICompanyDocuments, 
 
         AddTabs(viewPager);
         tabs.setupWithViewPager(viewPager);
-        viewPager.setOffscreenPageLimit(4);
+        viewPager.setOffscreenPageLimit(5);
     }
 
     private void RunCsvReader()
@@ -181,6 +183,7 @@ public class ExcelExport extends FragmentActivity implements ICompanyDocuments, 
         adapter.addFrag(fragNewEntries, "New entries");
         adapter.addFrag(fragEntrieErrors, "Entry errors");
         adapter.addFrag(fragExcelTable, "Full table");
+        adapter.addFrag(FragMenu.newInstance(), "Menu");
         viewPager.setAdapter(adapter);
     }
 

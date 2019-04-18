@@ -337,7 +337,7 @@ public class CsvCellConverter
                 if(!note.isEmpty())
                     b.append(note);
             }
-            extras.setFacilities(b.toString());
+            extras.setDescription(b.toString());
         }
     }
 
@@ -362,7 +362,7 @@ public class CsvCellConverter
     {
         if(recruitment.length > 0)
         {
-            if(recruitment[0].toLowerCase() == "true")
+            if(recruitment[0].toLowerCase().equals("true"))
                 contact.setOnlineRecruitment(true);
         }
     }
